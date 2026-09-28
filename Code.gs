@@ -16,7 +16,7 @@
 
 const PENDING_SHEET = "Pending Review";
 const VERIFIED_SHEET = "Verified Listings";
-const YOUR_SITE_URL = "https://yourdomain.com";
+const YOUR_SITE_URL = "https://brelloringcapital-del.github.io/dallas-mobile-rv-repair-directory";
 const YOUR_NICHE = "Mobile RV Repair";
 const YOUR_CITY = "Dallas, TX";
 const FROM_NAME = "Dallas RV Repair Directory";
@@ -147,42 +147,10 @@ function generateColdEmailDraft(listing, isVerified) {
   const site = YOUR_SITE_URL;
 
   if (isVerified) {
-    return `Subject: You're now listed on the ${YOUR_CITY} ${YOUR_NICHE} directory (free)
-
-Hi there,
-
-I wanted to let you know that ${name} has been added to our free local directory of ${YOUR_NICHE} providers in ${YOUR_CITY}.
-
-Your listing is live here: ${site}
-
-We built this so local RV owners can quickly find trusted mobile repair and maintenance services. There's no cost and no obligation.
-
-If anything looks incorrect (phone, service area, website), just reply to this email and we'll fix it the same day.
-
-Would you like us to mark the listing as Verified / Featured so it appears at the top with a badge? Happy to do that at no charge for the first month if you confirm ownership.
-
-Thanks for serving the ${YOUR_CITY} RV community.
-
-Best,
-${FROM_NAME}
-${site}`;
+    return `Subject: You're now listed on the ${YOUR_CITY} ${YOUR_NICHE} directory (free)\n\nHi there,\n\nI wanted to let you know that ${name} has been added to our free local directory of ${YOUR_NICHE} providers in ${YOUR_CITY}.\n\nYour listing is live here: ${site}\n\nWe built this so local RV owners can quickly find trusted mobile repair and maintenance services. There's no cost and no obligation.\n\nIf anything looks incorrect (phone, service area, website), just reply to this email and we'll fix it the same day.\n\nWould you like us to mark the listing as Verified / Featured so it appears at the top with a badge? Happy to do that at no charge for the first month if you confirm ownership.\n\nThanks for serving the ${YOUR_CITY} RV community.\n\nBest,\n${FROM_NAME}\n${site}`;
   }
 
-  return `Subject: ${name} added to the free ${YOUR_CITY} ${YOUR_NICHE} directory
-
-Hi,
-
-Quick note: we recently added ${name} to our free directory of ${cat} providers serving ${YOUR_CITY}.
-
-Listing URL: ${site}
-
-This helps local RV owners find you when they search for mobile repair, emergency service, or routine maintenance.
-
-No cost, no contracts. If you'd like to update the description, add a photo, or claim the listing so only you can edit it, reply to this email or use the claim form on the site.
-
-Thanks,
-${FROM_NAME}
-${site}`;
+  return `Subject: ${name} added to the free ${YOUR_CITY} ${YOUR_NICHE} directory\n\nHi,\n\nQuick note: we recently added ${name} to our free directory of ${cat} providers serving ${YOUR_CITY}.\n\nListing URL: ${site}\n\nThis helps local RV owners find you when they search for mobile repair, emergency service, or routine maintenance.\n\nNo cost, no contracts. If you'd like to update the description, add a photo, or claim the listing so only you can edit it, reply to this email or use the claim form on the site.\n\nThanks,\n${FROM_NAME}\n${site}`;
 }
 
 /**
