@@ -1,24 +1,25 @@
 # Mobile RV Repair Directory – Dallas, TX
 
-Free hyper-local niche directory. **$0 stack**: pure HTML/CSS/JS + Google Sheets + Tally + GitHub Pages.
+Free hyper-local niche directory. **$0 stack** — no Tally required.
 
 **Live site (enable Pages first):** https://brelloringcapital-del.github.io/dallas-mobile-rv-repair-directory  
 **Repo:** https://github.com/brelloringcapital-del/dallas-mobile-rv-repair-directory
 
-## Package
+## What's included
 
 | File | Purpose |
 |------|---------|
-| `index.html` | Directory frontend (search, filters, featured, modal, Schema.org) |
-| `google-maps-scraper.js` | Browser console scraper → CSV |
-| `Code.gs` | Apps Script webhook + cold-email drafts |
-| `seo-and-outreach-templates.md` | SEO titles/metas + Email 1 & 2 |
-| `sample-listings.csv` | Import into Sheets as starter data |
-| `pending-review-headers.csv` | Header row for Pending Review tab |
-| `SETUP.md` | Exact remaining steps (Pages, Tally, Sheets) |
+| `index.html` | Directory + **built-in Add/Claim forms** (posts to Apps Script) |
+| `Code.gs` | Google Apps Script webhook → Pending Review + cold emails |
+| `google-maps-scraper.js` | Browser console Maps → CSV scraper |
+| `SETUP.md` | **Minimal setup** (Pages + one Apps Script URL) |
+| `sample-listings.csv` | Starter data for Sheets |
+| `seo-and-outreach-templates.md` | SEO + outreach emails |
 
-## Quick start
+## Your only setup steps
 
-See **[SETUP.md](SETUP.md)** for the 5 remaining manual steps (Pages, Tally, Sheets).
+1. Enable GitHub Pages (Settings → Pages → main / root)
+2. Create a Google Sheet, paste `Code.gs`, deploy as Web App (Anyone)
+3. Paste the `/exec` URL into `index.html` → `APPS_SCRIPT_URL`
 
-Code.gs `YOUR_SITE_URL` and `index.html` canonical already point to the GitHub Pages URL.
+See **SETUP.md** for click-by-click instructions.

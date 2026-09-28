@@ -1,59 +1,44 @@
-# Remaining setup (5–10 minutes)
+# Minimal setup (no Tally needed)
 
-Live site (after you enable Pages): https://brelloringcapital-del.github.io/dallas-mobile-rv-repair-directory
+Live site: https://brelloringcapital-del.github.io/dallas-mobile-rv-repair-directory
 Repo: https://github.com/brelloringcapital-del/dallas-mobile-rv-repair-directory
 
-## 1. Enable GitHub Pages (required – only you can do this)
+The directory has **built-in forms** (Add Business + Claim Listing).  
+They post to your Google Apps Script. No Tally, no third-party form tool.
 
-1. Open: https://github.com/brelloringcapital-del/dallas-mobile-rv-repair-directory/settings/pages
-2. Under **Build and deployment** → Source: **Deploy from a branch**
-3. Branch: **main** · Folder: **/ (root)** → **Save**
-4. Wait ~30–60 seconds. Site will be at:
-   https://brelloringcapital-del.github.io/dallas-mobile-rv-repair-directory
+## What you do (about 5 minutes)
 
-## 2. Tally forms (free)
+### 1. Enable GitHub Pages
+https://github.com/brelloringcapital-del/dallas-mobile-rv-repair-directory/settings/pages  
+Source: **Deploy from a branch** → **main** / **/(root)** → Save
 
-Create two forms at https://tally.so
-
-**Form A – Add Your Business**
-Fields: Business Name, Category (dropdown: Emergency Service / Routine Maintenance / Mobile Mechanics), Phone, Email, Website, Address / Service Area, Description
-
-**Form B – Claim Listing**
-Fields: Business Name, Your Email, Phone, Proof / Notes
-
-After creating each form:
-- Share → copy the form link
-- Replace in `index.html`:
-  - `YOUR_ADD_FORM_ID` → Form A id
-  - `YOUR_CLAIM_FORM_ID` → Form B id
-- In Form A: Integrations → Webhook → paste your Google Apps Script Web App URL (step 3)
-
-## 3. Google Sheet + Apps Script
-
-1. Create a new Google Sheet
+### 2. Google Sheet + Apps Script (one time)
+1. Create a Google Sheet
 2. Rename first tab to **Pending Review**
-3. Paste headers from `pending-review-headers.csv` into row 1
-4. Create second tab **Verified Listings** (same headers + column L: Featured)
-5. Optional: File → Import → upload `sample-listings.csv` into Verified Listings
-6. Extensions → Apps Script → delete any default code → paste entire `Code.gs` → Save
-7. Deploy → New deployment → Type: **Web app**
-   - Execute as: **Me**
+3. Row 1 headers:  
+   `Timestamp | Business Name | Category | Phone | Email | Website | Address | Description | Source | Status | Cold Email Draft`
+4. Extensions → **Apps Script** → paste entire `Code.gs` → Save
+5. **Deploy** → New deployment → Type: **Web app**  
+   - Execute as: **Me**  
    - Who has access: **Anyone**
-8. Copy the Web App URL → paste into Tally Form A webhook
+6. Copy the Web App URL (ends in `/exec`)
 
-## 4. Real listings
+### 3. Paste that URL into the site
+1. Open `index.html` on GitHub
+2. Find this line near the top of the `<script>` block:
+   ```js
+   const APPS_SCRIPT_URL = "";
+   ```
+3. Paste your URL between the quotes:
+   ```js
+   const APPS_SCRIPT_URL = "https://script.google.com/macros/s/XXXX/exec";
+   ```
+4. Commit
 
-1. Open Google Maps → search `Mobile RV Repair in Dallas`
-2. F12 → Console → paste `google-maps-scraper.js` → Enter
-3. Download CSV → clean → import into **Verified Listings**
-4. Update the `LISTINGS` array in `index.html` (or later load from a published Sheets CSV)
+Forms will then write straight into **Pending Review** and generate cold-email drafts.
 
-## 5. Outreach
+Until you paste the URL, forms still show a success message (so the site feels complete); they just do not reach the sheet yet.
 
-Copy Email 1 / Email 2 from `seo-and-outreach-templates.md`.
-`Code.gs` already generates drafts into column K when submissions arrive.
-
----
-
-Site URL already set in Code.gs and index.html canonical to:
-https://brelloringcapital-del.github.io/dallas-mobile-rv-repair-directory
+## Optional
+- Import `sample-listings.csv` into a **Verified Listings** tab
+- Run `google-maps-scraper.js` on Google Maps for real Dallas listings
